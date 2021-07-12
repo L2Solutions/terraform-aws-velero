@@ -27,7 +27,7 @@ resource "aws_s3_bucket" "this" {
 }
 
 data "aws_s3_bucket" "this" {
-  name = local.create_s3_bucket ? aws_s3_bucket.this[0].id : local.s3_bucket_id
+  bucket = local.create_s3_bucket ? aws_s3_bucket.this[0].id : local.s3_bucket_id
 
   depends_on = [
     aws_s3_bucket.this
