@@ -13,13 +13,14 @@ locals {
     initContainers = [{
       name  = "velero-plugin-for-aws"
       image = "velero/velero-plugin-for-aws:v1.2.0"
+      volumeMounts = [{
+        mountPath = "/target"
+        name      = "plugins"
+      }]
     }]
     tolerations  = local.tolerations
     nodeSelector = local.nodeSelector
-    volumeMounts = [{
-      mountPath = "/target"
-      name      = "plugins"
-    }]
+
     serviceAccount = {
       server = {
         annotations = {
