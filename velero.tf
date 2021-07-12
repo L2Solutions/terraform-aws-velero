@@ -3,7 +3,7 @@ locals {
     configuration = {
       provider = "aws"
       backupStorageLocation = {
-        bucket = data.aws_s3_bucket.this.name
+        bucket = data.aws_s3_bucket.this.id
         config = {
           region = data.aws_region.current.name
           s3Url  = "https://s3.us-east-2.amazonaws.com"
