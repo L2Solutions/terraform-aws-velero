@@ -12,7 +12,7 @@ variable "logging_s3_id" {
 
 variable "bucket_prefix" {
   type        = string
-  default     = "velero_backups"
+  default     = "velero-backups"
   description = "Name prefix for the s3 bucket."
 }
 
