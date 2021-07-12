@@ -51,7 +51,7 @@ data "aws_iam_policy_document" "this_oidc" {
       test     = "StringEquals"
       variable = "${local.oidc_id}:sub"
       values = [
-        "sts.amazonaws.com",
+        "system:serviceaccount:velero:velero-server",
       ]
     }
   }
