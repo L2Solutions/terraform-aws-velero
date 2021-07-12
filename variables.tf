@@ -1,7 +1,7 @@
 variable "s3_bucket_id" {
   type        = string
   default     = null
-  description = "Existing s3 bucket id"
+  description = "Existing s3 bucket id. If none passed, will create s3 bucket"
 }
 
 variable "logging_s3_id" {
