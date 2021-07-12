@@ -19,9 +19,10 @@ resource "aws_s3_bucket" "this" {
 
   dynamic "logging" {
     for_each = local.logging_map
-
-    target_bucket = each.value.target_bucket
-    target_prefix = each.value.target_prefix
+    content {
+      target_bucket = each.value.target_bucket
+      target_prefix = each.value.target_prefix
+    }
   }
 }
 
