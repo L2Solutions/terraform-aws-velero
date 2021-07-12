@@ -18,10 +18,10 @@ resource "aws_s3_bucket" "this" {
   }
 
   dynamic "logging" {
-    count = local.enable_logging ? 1 : 0
+    foreach = local.logging_map
 
-    target_bucket = local.logging_s3_id
-    target_prefix = "velero/"
+    target_bucket = each.value.target_bucket
+    target_prefix = each.value.target_prefix
   }
 }
 

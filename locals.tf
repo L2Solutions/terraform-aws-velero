@@ -9,4 +9,11 @@ locals {
   velero_version   = var.velero_version
   tolerations      = var.tolerations
   nodeSelector     = var.nodeSelector
+
+  logging_map = var.logging_s3_id != null ? {
+    log = {
+      target_bucket = local.logging_s3_id
+      target_prefix = "velero/"
+    }
+  } : {}
 }
