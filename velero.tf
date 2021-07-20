@@ -1,5 +1,6 @@
 locals {
   values = yamlencode({
+    snapshotsEnabled = false
     configuration = {
       provider = "aws"
       backupStorageLocation = {
