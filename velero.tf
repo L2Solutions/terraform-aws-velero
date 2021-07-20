@@ -1,6 +1,5 @@
 locals {
   values = yamlencode({
-    snapshotsEnabled = false
     configuration = {
       provider = "aws"
       backupStorageLocation = {
@@ -8,6 +7,12 @@ locals {
         config = {
           region = data.aws_region.current.name
           s3Url  = "https://s3.us-east-2.amazonaws.com"
+        }
+      }
+      volumeSnapshotLocation = {
+        name = "default"
+        config = {
+          region = data.aws_region.current.name
         }
       }
     }
