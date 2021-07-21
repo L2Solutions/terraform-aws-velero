@@ -52,6 +52,6 @@ resource "helm_release" "velero" {
   chart            = "velero"
   create_namespace = true
 
-  values = [local.values]
+  values = [local.velero_values]
 
 }
