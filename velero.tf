@@ -1,43 +1,44 @@
 locals {
-  values = yamlencode({
-    configuration = {
-      provider = "aws"
-      backupStorageLocation = {
-        bucket = data.aws_s3_bucket.this.id
-        config = {
-          region = data.aws_region.current.name
-          s3Url  = "https://s3.us-east-2.amazonaws.com"
+  velero_values = yamlencode(
+    merge({
+      configuration = {
+        provider = "aws"
+        backupStorageLocation = {
+          bucket = data.aws_s3_bucket.this.id
+          config = {
+            region = data.aws_region.current.name
+            s3Url  = "https://s3.us-east-2.amazonaws.com"
+          }
+        }
+        volumeSnapshotLocation = {
+          name = "default"
+          config = {
+            region = data.aws_region.current.name
+          }
         }
       }
-      volumeSnapshotLocation = {
-        name = "default"
-        config = {
-          region = data.aws_region.current.name
-        }
-      }
-    }
-    initContainers = [{
-      name  = "velero-plugin-for-aws"
-      image = "velero/velero-plugin-for-aws:v1.2.0"
-      volumeMounts = [{
-        mountPath = "/target"
-        name      = "plugins"
+      initContainers = [{
+        name  = "velero-plugin-for-aws"
+        image = "velero/velero-plugin-for-aws:v1.2.0"
+        volumeMounts = [{
+          mountPath = "/target"
+          name      = "plugins"
+        }]
       }]
-    }]
-    tolerations  = local.tolerations
-    nodeSelector = local.nodeSelector
+      tolerations  = local.tolerations
+      nodeSelector = local.nodeSelector
 
-    serviceAccount = {
-      server = {
-        annotations = {
-          "eks.amazonaws.com/role-arn" = aws_iam_role.this.arn
+      serviceAccount = {
+        server = {
+          annotations = {
+            "eks.amazonaws.com/role-arn" = aws_iam_role.this.arn
+          }
         }
       }
-    }
-    credentials = {
-      useSecret = false
-    }
-  })
+      credentials = {
+        useSecret = false
+      }
+  }, local.values))
 
 }
 

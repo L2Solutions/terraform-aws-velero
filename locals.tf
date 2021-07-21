@@ -7,6 +7,7 @@ locals {
   velero_version   = var.velero_version
   tolerations      = var.tolerations
   nodeSelector     = var.nodeSelector
+  values           = var.values != null ? yamldecode(var.values) : {}
 
   logging_map = var.logging_s3_id != null ? {
     log = {

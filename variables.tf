@@ -39,6 +39,12 @@ variable "tolerations" {
 
 variable "nodeSelector" {
   type        = map(string)
-  description = "Node selector on veler helm release"
+  description = "Node selector on velero helm release"
   default     = {}
+}
+
+variable "values" {
+  type        = string
+  description = "Values override for velero helmrelease."
+  default     = null
 }
