@@ -49,8 +49,3 @@ variable "values" {
   default     = null
 }
 
-variable "serviceaccounts" {
-  description = "Additional list of full scoped list"
-  default     = []
-  type        = list(string)
-}

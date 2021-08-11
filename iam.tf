@@ -50,7 +50,9 @@ data "aws_iam_policy_document" "this_oidc" {
     condition {
       test     = "StringEquals"
       variable = "${local.oidc_id}:sub"
-      values   = local.serviceaccounts
+      values = [
+        "system:serviceaccount:velero:velero-server"
+      ]
     }
   }
 }

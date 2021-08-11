@@ -16,5 +16,4 @@ locals {
     }
   } : {}
 
-  serviceaccounts = concat(var.serviceaccounts, ["system:serviceaccount:velero:velero-server"])
 }
