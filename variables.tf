@@ -48,3 +48,9 @@ variable "values" {
   description = "Values override for velero helmrelease."
   default     = null
 }
+
+variable "serviceaccounts" {
+  description = "Additional list of full scoped list"
+  default     = []
+  type        = list(string)
+}

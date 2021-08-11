@@ -15,4 +15,6 @@ locals {
       target_prefix = "velero/"
     }
   } : {}
+
+  serviceaccounts = concat(var.serviceaccounts, ["system:serviceaccount:velero:velero-server"])
 }
